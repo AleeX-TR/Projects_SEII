@@ -1,7 +1,7 @@
 // Led 
 
 const int LED1 = 5; // Definindo o pino do led 1
-const int LED2 = 6; // Definindo o pino do led 2 
+const int LED2 = 4; // Definindo o pino do led 2 
 char tecla; // Variavel para entrada das teclas "WASD" via serial
 
 // Wifi
@@ -11,12 +11,15 @@ char tecla; // Variavel para entrada das teclas "WASD" via serial
 #define WLAN_SSID "Etec-IoT"
 #define WLAN_PASS "etecjb*123"
 
-String newHostname = "Biluteteia"; 
+String newHostname = "FaisKa_Massacre"; 
 
 void setup() { 
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+  Serial.begin(115200);
 
 Serial.begin(115200); 
-// WIFI
+ // WIFI
   Serial.println(); 
   WiFi.mode(WIFI_STA); 
   WiFi.begin(WLAN_SSID, WLAN_PASS); 
@@ -34,10 +37,7 @@ Serial.begin(115200);
   delay(1000);
   WiFi.hostname(newHostname.c_str());
   Serial.printf("Hostname deste ESP8266: %s\n", WiFi.hostname().c_str()) ;  
-// LED
-  pinMode(LED1, OUTPUT);
-  pinMode(LED2, OUTPUT);
-  Serial.begin(115200);
+
 }
 
 
