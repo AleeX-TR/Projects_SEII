@@ -1,0 +1,37 @@
+const int LED1 = 5; // Definindo o pino do led 1
+const int LED2 = 6; // Definindo o pino do led 2 
+char tecla; // Variavel para entrada das teclas "WASD" via serial
+
+void setup() { 
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+  Serial.begin(9600);
+}
+
+
+void loop() {
+
+ if (Serial.available()>0){ //entrada da teclas "WASD" via serial
+    tecla=Serial.read(); //Após digido a tecla será guardada na variavel "tecla"
+ 
+    if (tecla=='W' || tecla== 'w' ){ // Se a variavel tecla for igual à 'W' ou 'w' será igual =  2 leds acesos. 
+      digitalWrite(LED1, HIGH);
+      digitalWrite(LED2, HIGH);
+    }
+   
+   if (tecla=='A' || tecla== 'a'){ // Se a variavel tecla for igual à 'A' ou 'a' será igual = Led direita aceso, esquerda apagado
+      digitalWrite(LED1, HIGH);
+      digitalWrite(LED2, LOW);
+    } 
+  
+   if (tecla=='S' || tecla== 's'){ // Se a variavel tecla for igual à 'S' ou 's' será igual = 2 leds apagados
+      digitalWrite(LED1, LOW);
+      digitalWrite(LED2, LOW);
+    }
+    
+   if (tecla=='D' || tecla=='d'){ // Se a variavel tecla for igual à 'D' ou 'd' será igual = Led esquerda aceso, direita apagad
+      digitalWrite(LED1, LOW);
+      digitalWrite(LED2, HIGH);
+    } 
+  }
+}
